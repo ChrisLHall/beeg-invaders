@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 3f;
 
+    public GameObject bulletPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,5 +20,11 @@ public class Player : MonoBehaviour
         var pos = transform.position;
         pos.x += Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
         transform.position = pos;
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            // todo pool
+            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        }
     }
 }
