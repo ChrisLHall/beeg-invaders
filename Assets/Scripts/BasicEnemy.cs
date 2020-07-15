@@ -17,6 +17,15 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.time > lastShootTime + SHOOT_INTERVAL)
+        {
+            lastShootTime = Time.time;
+            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.LogError("Enemy trigger enter: " + collision.name);
     }
 }

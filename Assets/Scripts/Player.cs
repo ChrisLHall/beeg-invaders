@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player inst { get; private set; } // TODO 2-player
+
     public float moveSpeed = 3f;
 
     public GameObject bulletPrefab;
 
-    // Start is called before the first frame update
-    void Start()
+    public int Health { get; private set; } = 1; // ????
+
+    private void Awake()
     {
-        
+        inst = this;
     }
-    
-    // Update is called once per frame
+
     void Update()
     {
         var pos = transform.position;
@@ -26,5 +28,10 @@ public class Player : MonoBehaviour
             // todo pool
             Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.LogError("Player trigger enter: " + collision.name);
     }
 }
