@@ -24,8 +24,9 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void HitByProjectile(PlayerProjectile proj)
     {
-        Debug.LogError("Enemy trigger enter: " + collision.name);
+        // todo explode
+        Destroy(gameObject);
     }
 }

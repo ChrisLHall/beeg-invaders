@@ -24,4 +24,14 @@ public class PlayerProjectile : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var enemy = collision.attachedRigidbody.GetComponent<BasicEnemy>();
+        if (null != enemy)
+        {
+            enemy.HitByProjectile(this);
+            Destroy(gameObject); // todo explode
+        }
+    }
 }

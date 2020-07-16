@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     {
         var pos = transform.position;
         pos.x += Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
+        pos.x = Mathf.Clamp(pos.x, GameBounds.inst.Min.x, GameBounds.inst.Max.x);
         transform.position = pos;
 
         if (Input.GetButtonDown("Fire1"))
@@ -30,8 +31,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void HitByProjectile(EnemyProjectile proj)
     {
-        Debug.LogError("Player trigger enter: " + collision.name);
+        // TODO?
+        Health -= 1;
     }
 }
